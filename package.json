@@ -1,1 +1,19 @@
-
+{
+    "name": "rg-client-hunt",
+    "version": "1.0.0",
+    "description": "client side app",
+    "main": "app.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/Ravichanderreddy-goli/rg-client-hunt"
+    },
+    "author": "Ravichander Reddy Goli",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/Ravichanderreddy-goli/rg-client-hunt/issues"
+    },
+    "homepage": "https://github.com/Ravichanderreddy-goli/rg-client-hunt/blob/main/README.md"
+  }
