@@ -1,6 +1,11 @@
 article {
     font-size: larger;
     text-align: center;
-    color: navy;
+    color: black;
     margin-top: 12em;
+}
+
+div {
+    text-align: center;
+    color: orange;
 }
