@@ -1,23 +1,21 @@
+// export default object with the initialization data
+
 export default [
+      
     {
-   Name: "Colden hall",
-   North: 40.3508200,
-   West: -94.8824554,
-   South: 40.3510490,
-   East: -94.8823754,
-   Notes: '',
-   Attachments: '',
-   'Quest-Location': 'Colden hall',
- },
- {
-    Name: 'Horizons west Apartments',
-    North: 40.3560533,
-    West: -94.8822882,
-    South: 40.3560296,
-    East: -94.8823180,
-    Notes: '',
-    Attachments: '',
-    'Quest-Location': 'Horizons west Apartments',
-  },
- 
-];
+        Name: '5860 Mc cRIMMON Parkway',
+        North: 35.84234912578917, 
+        West: -78.84515738749143
+      },
+        
+    
+    {
+        Name: 'North West Missouri State University',
+        North: 40.351952674389615, 
+        West: -94.88241701431218
+        
+    }
+        
+  
+  ];
+
