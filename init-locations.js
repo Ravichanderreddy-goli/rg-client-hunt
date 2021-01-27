@@ -3,16 +3,16 @@
 export default [
       
     {
-        Name: '5860 Mc cRIMMON Parkway',
-        North: 35.84234912578917, 
-        West: -78.84515738749143
+        Name: 'Horizons west Apartments',
+        North: 40.3559331, 
+        West: -94.8819555
       },
         
     
     {
-        Name: 'North West Missouri State University',
-        North: 40.351952674389615, 
-        West: -94.88241701431218
+        Name: 'Colden pond',
+        North: 40.3499213, 
+        West: -94.8830229
         
     }
         
