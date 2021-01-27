@@ -1,4 +1,4 @@
-// Resource : http://www.movable-type.co.uk/scripts/latlong.html?from=48.86,-122.0992&to=48.8599,-122.1449 
+// Resource : http://www.movable-type.co.uk/scripts/latlong.html?from=40.355,-94.881&to=40.349,-94.883
 // Above link for calculating distance 
 
 
@@ -80,5 +80,6 @@ function distanceBetweenLocations(questLat, questLon) {
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
     const d = R * c;
+
     return d; // in metres
 }
