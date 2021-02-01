@@ -1,8 +1,8 @@
 export default [
   {
       Name: 'Horizons West Apartments',
-      Latitude: 	40.358970,
-      Longitude: -94.883195
+      Latitude: 	40.355946,
+      Longitude: -94.881397
   },
   {
       Name: 'Admin Block',
