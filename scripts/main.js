@@ -1,6 +1,4 @@
-import locationsArray from '../init-locations.js';
-
-
+import locationsArray from '../init_locations.js';
 
 let locationElement = document.getElementById("location");
 
@@ -25,50 +23,58 @@ async function getLocation() {
     });
 }
 
-
+//the locationHandler() function checksout the current location and compares it with the 
+//init-locations.
 
 async function locationHandler() {
     let locText = await getLocation();
     currentlat = locText.coords.latitude;
-    document.getElementById("device-lat").innerHTML = "device-latitude: " + currentlat.toFixed(6);
+    document.getElementById("device-lat").innerHTML = "This is about device-lat: " + currentlat.toFixed(6);
     currentlon = locText.coords.longitude;
-    document.getElementById("device-long").innerHTML = "device-longitude: " + currentlon.toFixed(6);
+    document.getElementById("device-long").innerHTML = "This is about device-long: " + currentlon.toFixed(6);
 
     locationsArray.forEach(function (value) {
         if (isInside(value.Latitude, value.Longitude)) {
             document.getElementById("locationAnswer").innerHTML = value.Name;
-            let utterance = new SpeechSynthesisUtterance("Welcome to  " + value.Name);
-            speechSynthesis.speak(utterance);
+            const utterance = new SpeechSynthesisUtterance();
+            utterance.text = `Congratulations! You found the location ${value.Name}`;
+            window.speechSynthesis.speak(utterance);
             error = false;
         }
     });
 
-   
+    // In case of any error where if the device is not 30m range it displays error.
 
     if(error) {
-        document.getElementById("error-message").innerHTML = "You're not in the radius range.";
-        let utterance = new SpeechSynthesisUtterance("You are not in the radius range");
-        speechSynthesis.speak(utterance);
+        //document.getElementById("error-message").innerHTML = "You're not in range of 30m.";
+      
+        let innerHTML = "Sorry You're not in the radius range.";
+        document.getElementById("error-message").innerHTML = innerHTML;
+        const utterance = new SpeechSynthesisUtterance(innerHTML);
+        //utterance.text = `Sorry You're not in the radius range.`;
+        window.speechSynthesis.speak(utterance);
+        
+
     } else {
         document.getElementById("error-message").innerHTML = "";
     }
 }
 
 
-
+//checking if distance is in 30m range.
 
 
 function isInside(questLat, questLon) {
     let distance = distanceBetweenLocations(questLat, questLon);
     console.log("distance: " + distance);
-    if (distance > 40) {
+    if (distance < 30) {
         return true;
     } else {
         return false;
     }
 }
 
-
+//distance between the lat-long points.
 function distanceBetweenLocations(questLat, questLon) {
     const R = 6371e3;
     const φ1 = currentlat * Math.PI / 180;
@@ -84,3 +90,9 @@ function distanceBetweenLocations(questLat, questLon) {
     const d = R * c;
     return d; 
 }
+  
+
+ 
+
+
+ 
