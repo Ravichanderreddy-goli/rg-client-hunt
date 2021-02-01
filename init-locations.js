@@ -19,5 +19,12 @@ export default [
        West: -94.874864169312,
        South: 40.33229497033568, 
        East: -94.874864169312,
+  },
+  {
+    Name: 'Bearcat Stadium',
+    Latitude: 40.35073819617418, 
+    Longitude: -94.88584822342064
   }
+  
+
 ]
