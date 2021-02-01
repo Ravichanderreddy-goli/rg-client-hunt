@@ -1,5 +1,8 @@
-import locationsArray from '../init_locations.js';
+// imports
+import locationsArray from '../init-locations.js';
 
+
+// loaction id assigned to locationElement
 let locationElement = document.getElementById("location");
 
 window.addEventListener('load', main);
@@ -10,11 +13,12 @@ function main() {
     console.log('Page is fully loaded');
 }
 
+// initializing the current position lat and lon and error to true
 let currentlat;
 let currentlon;
 let error = true;
 
-// getLocation() function is used to collect the current location
+// collects current location
 async function getLocation() {
     return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -23,58 +27,36 @@ async function getLocation() {
     });
 }
 
-//the locationHandler() function checksout the current location and compares it with the 
-//init-locations.
+// getLocation function to itearte through the list of locations
 
 async function locationHandler() {
     let locText = await getLocation();
     currentlat = locText.coords.latitude;
-    document.getElementById("device-lat").innerHTML = "This is about device-lat: " + currentlat.toFixed(6);
+    document.getElementById("device-lat").innerHTML = "Device-latitude: " + currentlat.toFixed(6);
     currentlon = locText.coords.longitude;
-    document.getElementById("device-long").innerHTML = "This is about device-long: " + currentlon.toFixed(6);
+    document.getElementById("device-long").innerHTML = "Device-longitude: " + currentlon.toFixed(6);
 
     locationsArray.forEach(function (value) {
         if (isInside(value.Latitude, value.Longitude)) {
             document.getElementById("locationAnswer").innerHTML = value.Name;
-            const utterance = new SpeechSynthesisUtterance();
-            utterance.text = `Congratulations! You found the location ${value.Name}`;
-            window.speechSynthesis.speak(utterance);
+            let utterance = new SpeechSynthesisUtterance("You reached the location" + value.Name);
+            speechSynthesis.speak(utterance);
             error = false;
         }
     });
 
-    // In case of any error where if the device is not 30m range it displays error.
-
     if(error) {
-        //document.getElementById("error-message").innerHTML = "You're not in range of 30m.";
-      
-        let innerHTML = "Sorry You're not in the radius range.";
-        document.getElementById("error-message").innerHTML = innerHTML;
-        const utterance = new SpeechSynthesisUtterance(innerHTML);
-        //utterance.text = `Sorry You're not in the radius range.`;
-        window.speechSynthesis.speak(utterance);
-        
-
+        document.getElementById("error-message").innerHTML = "You are not in any location of the quest.";
+        let utterance = new SpeechSynthesisUtterance("You are not in any location of the quest.");
+        speechSynthesis.speak(utterance);
     } else {
         document.getElementById("error-message").innerHTML = "";
     }
 }
 
 
-//checking if distance is in 30m range.
+// distance between the locations
 
-
-function isInside(questLat, questLon) {
-    let distance = distanceBetweenLocations(questLat, questLon);
-    console.log("distance: " + distance);
-    if (distance < 30) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-//distance between the lat-long points.
 function distanceBetweenLocations(questLat, questLon) {
     const R = 6371e3;
     const φ1 = currentlat * Math.PI / 180;
@@ -88,11 +70,17 @@ function distanceBetweenLocations(questLat, questLon) {
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
     const d = R * c;
-    return d; 
+    return d; // in metres
 }
-  
-
- 
 
 
- 
+//Calculates distance and checks if within the range of 20 meters
+function isInside(questLat, questLon) {
+    let distance = distanceBetweenLocations(questLat, questLon);
+    console.log("distance: " + distance);
+    if (distance < 20) {
+        return true;
+    } else {
+        return false;
+    }
+}
