@@ -1,7 +1,7 @@
 export default [
   {
       Name: 'Horizons West Apartments',
-      Latitude: 	40.355946,
+      Latitude: 40.355946,
       Longitude: -94.881397
   },
   {
